@@ -1,0 +1,38 @@
+package ru.yandex.practicum.sleeptracker;
+
+import java.time.LocalDateTime;
+
+public class SleepingSession {
+
+    private final LocalDateTime start;
+    private final LocalDateTime end;
+    private final SleepQuality quality;
+
+    public SleepingSession(LocalDateTime start, LocalDateTime end, SleepQuality quality) {
+        this.start = start;
+        this.end = end;
+        this.quality = quality;
+    }
+
+    public LocalDateTime getStart() {
+        return start;
+    }
+
+    public LocalDateTime getEnd() {
+        return end;
+    }
+
+    public SleepQuality getQuality() {
+        return quality;
+    }
+
+    public long getDurationMinutes() {
+        return java.time.Duration.between(start, end).toMinutes();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("SleepSession{start=%s, end=%s, quality=%s, duration=%d min}",
+                start, end, quality, getDurationMinutes());
+    }
+}
