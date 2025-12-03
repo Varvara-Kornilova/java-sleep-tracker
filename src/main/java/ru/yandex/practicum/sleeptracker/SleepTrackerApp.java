@@ -23,14 +23,28 @@ public class SleepTrackerApp {
     }
 
     public static void main(String[] args) {
+        if (args.length != 1) {
+            System.err.println("Использование: java SleepTrackerApp <путь_к_файлу_лога>");
+            System.exit(1);
+        }
+
+        String logFilePath = args[0];
+
         try {
-            List<SleepingSession> sessions = SleepLogParser.parseFromResource();
+            List<SleepingSession> sessions = SleepLogParser.parseFromFile(logFilePath);
             SleepTrackerApp app = new SleepTrackerApp();
             List<SleepAnalysisResult> results = app.analyzeAll(sessions);
+
+            System.out.println("=== Анализ сна ===");
             results.forEach(System.out::println);
+
         } catch (IOException e) {
-            System.err.println("Ошибка при чтении файла sleep_log.txt: " + e.getMessage());
+            System.err.println("Ошибка при чтении файла '" + logFilePath + "': " + e.getMessage());
+            System.exit(1);
+        } catch (Exception e) {
+            System.err.println("Ошибка при анализе: " + e.getMessage());
             e.printStackTrace();
+            System.exit(1);
         }
     }
 }

@@ -45,12 +45,12 @@ class SleepTrackerAppTest {
         List<SleepAnalysisResult> results = app.analyzeAll(List.of());
 
         assertEquals(7, results.size());
-        assertEquals(0, results.get(0).getValue()); // TotalSessionsCount
-        assertEquals(0, results.get(1).getValue()); // Min
-        assertEquals(0, results.get(2).getValue()); // Max
-        assertEquals(0, results.get(3).getValue()); // Avg
-        assertEquals(0, results.get(4).getValue()); // Bad count
-        assertEquals(0, results.get(5).getValue()); // Sleepless nights
-        assertEquals("Недостаточно данных", results.get(6).getValue()); // Chronotype
+        assertEquals(0, results.get(0).getValue());
+        assertEquals(0, results.get(1).getValue());
+        assertEquals(0, results.get(2).getValue());
+        assertEquals(0, results.get(3).getValue());
+        assertEquals(0, results.get(4).getValue());
+        assertEquals(0, results.get(5).getValue());
+        assertEquals("Недостаточно данных", results.get(6).getValue());
     }
 }
